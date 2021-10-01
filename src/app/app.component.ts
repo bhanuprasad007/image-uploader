@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AppUploadDialogComponent } from './app-upload-dialog/app-upload-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'image-uploader';
+
+  constructor(public dialog: MatDialog) {}
+
+  onSelect(event: any) {
+    this.dialog.open(AppUploadDialogComponent, {
+      data: {file: event.addedFiles[0]},
+      width: '600px'
+    });
+  }
 }
